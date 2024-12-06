@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 // ANSI color codes
 #define RESET "\033[0m"
 #define RED "\033[31m"
@@ -9,7 +8,6 @@
 #define YELLOW "\033[33m"
 #define BLUE "\033[34m"
 #define CYAN "\033[36m"
-
 char *test_1_en(char a[])
 {
     int j, k = strlen(a), x = 1;
@@ -21,7 +19,6 @@ char *test_1_en(char a[])
     }
     return a;
 }
-
 char *test_1_de(char a[])
 {
     int j, k = strlen(a), x = 1;
@@ -33,12 +30,10 @@ char *test_1_de(char a[])
     }
     return a;
 }
-
 int main()
 {
     char a[10000];
     int choose = 0;
-
     // Welcome message with color
     printf(CYAN "\nWelcome to the Encryption Tool!\n\n" RESET);
     printf(YELLOW "  1. Encrypt\n" RESET);
@@ -123,7 +118,6 @@ int main()
         printf(RED "\nInvalid option! Please restart the program.\n" RESET);
         break;
     }
-
     // Exit message
     printf(YELLOW "\nThank you for using the tool. Goodbye!\n" RESET);
     return 0;

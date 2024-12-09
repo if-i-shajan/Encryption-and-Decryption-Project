@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Tool</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFE0B5; /* Light Peach Background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #6499E9; /* Soft Blue Text */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #6499E9; /* Soft Blue for Main Heading */
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #FA812F; /* Bright Orange for Subheadings */
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .input-field, .output-field {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f0f0f0;
+        }
+
+        .input-field {
+            height: 150px; /* Set the height of the input text box to match the output box */
+        }
+
+        .button {
+            background-color: #FA812F; /* Bright Orange Button */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #F8761A; /* Slightly Darker Orange on Hover */
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #0A5EB0; /* Subheading output font color */
+            border: 1px solid #0A5EB0;
+            background-color: #e3f2fd;
+            display: none;
+        }
+
+        /* Layout for two boxes */
+        .box-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .box {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .box-container {
+                flex-direction: column;
+            }
+            .box {
+                width: 100%;
+            }
+        }
+
+        /* Output Box Styles */
+        .output-box {
+            width: 100%;
+            background-color: #fafafa;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            position: relative;
+            height: 150px; /* Set the height of the output box */
+        }
+
+        /* Custom Number Change Buttons */
+        .number-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .number-button {
+            padding: 10px 20px;
+            background-color: #6499E9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .number-button:hover {
+            background-color: #2b6bb0;
+        }
+
+        .condition-number-display {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* New Layout Adjustments */
+        .input-text-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .output-text-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Encryption and Decryption Tool</h1>
+    <h2><strong>Encryption</strong> locks data with a secret code, while <strong>decryption</strong> unlocks it back to its original form.</h2>
+    
+    <div class="box-container">
+        <!-- Encryption/Decryption Selection -->
+        <div class="box">
+            <h2>Select Action</h2>
+            <select id="actionSelect" class="input-field">
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select>
+        </div>
+
+        <!-- Custom Number Change Buttons -->
+        <div class="box">
+            <h2>Change Condition Number</h2>
+            <div class="condition-number-display" id="conditionDisplay">Condition Number: 1</div>
+            <div class="number-buttons">
+                <button class="number-button" onclick="changeCondition('+')">+</button>
+                <button class="number-button" onclick="changeCondition('-')">-</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Box -->
+    <div class="input-text-container">
+        <h2>Enter Text</h2>
+        <textarea id="inputText" class="input-field" placeholder="Enter text to encrypt or decrypt"></textarea>
+        <button class="button" onclick="processText()">Process</button>
+    </div>
+
+    <!-- Output Box -->
+    <div class="output-text-container" id="outputBox">
+        <h3>Output:</h3>
+        <textarea id="outputText" class="output-field" readonly></textarea>
+        <!-- Styled Copy Button to resemble Process Button -->
+        <button class="button" onclick="copyToOutputBox()">Copy to Input Box</button>
+    </div>
+</div>
+
+<script>
+// Encryption/Decryption Logic with Custom Condition Number
+let conditionNumber = 1;
+
+function test_encryption(text) {
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+        result += String.fromCharCode(text.charCodeAt(i) - conditionNumber);
+    }
+    return result;
+}
+
+function test_decryption(text) {
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+        result += String.fromCharCode(text.charCodeAt(i) + conditionNumber);
+    }
+    return result;
+}
+
+function changeCondition(operation) {
+    if (operation === '+' && conditionNumber < 100) {
+        conditionNumber++;
+    } else if (operation === '-' && conditionNumber > 1) {
+        conditionNumber--;
+    }
+    document.getElementById('conditionDisplay').innerText = 'Condition Number: ' + conditionNumber;
+}
+
+function processText() {
+    const action = document.getElementById('actionSelect').value;
+    const inputText = document.getElementById('inputText').value;
+    let output;
+
+    if (action === 'encrypt') {
+        output = test_encryption(inputText);
+    } else if (action === 'decrypt') {
+        output = test_decryption(inputText);
+    }
+
+    document.getElementById('outputText').value = output;
+}
+
+// Copy output to input box
+function copyToOutputBox() {
+    const outputText = document.getElementById('outputText').value;
+    document.getElementById('inputText').value = outputText;
+}
+</script>
+
+</body>
+</html>

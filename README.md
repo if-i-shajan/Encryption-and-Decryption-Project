@@ -4,7 +4,7 @@ This project is a simple application for encrypting and decrypting text or files
 
 ---
 
-## What It Does
+## What It Does?
 - **Encrypt/Decrypt Text**: Convert text into secure, unreadable formats and revert it back when needed.
 - **Encrypt/Decrypt Files**: Securely process files through the command line.
 

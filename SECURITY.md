@@ -5,7 +5,7 @@
 If you find a security vulnerability in the Encryption and Decryption Tool, please follow these steps:
 
 1. **Report the Issue**:  
-   Send a message detailing the issue to [your preferred contact method, e.g., email or GitHub Issues].
+   Send a message detailing the issue to jmifthakharul.shajan@gmail.com
 
 2. **Response Time**:  
    We aim to respond to reports within **48 hours**.

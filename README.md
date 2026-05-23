@@ -4,6 +4,19 @@ This project is a simple application for encrypting and decrypting text or files
 
 ---
 
+## 👥 Dev
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/if-i-shajan">
+        <img src="https://github.com/if-i-shajan.png" width="100px" height="100px" style="object-fit:cover;" alt="Shajan"/>
+        <br/>
+        <b>J.M. Ifthakharul Islam Shajan</b>
+      </a>
+  </tr>
+</table>
+
 ## What It Does?
 - **Encrypt/Decrypt Text**: Convert text into secure, unreadable formats and revert it back when needed.
 - **Encrypt/Decrypt Files**: Securely process files through the command line.
